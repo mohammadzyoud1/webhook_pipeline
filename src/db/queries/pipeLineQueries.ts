@@ -1,13 +1,13 @@
 import { d_base } from "../../index.js";
 import { pipelines } from "../schema.js";
 import { eq } from "drizzle-orm";
-export async function createPipeline(name: string, source_path: string, actionType: string) {
+export async function createPipeline(name: string, source_path: string, action_type: string) {
 
 
     const result = await d_base.insert(pipelines).values({
         name: name,
         source_path: source_path,
-        action_type: actionType
+        action_type: action_type
     }).returning();
 
     return (result[0]);

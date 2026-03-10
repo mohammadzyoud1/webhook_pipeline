@@ -2,12 +2,12 @@ import { d_base } from "../../index.js";
 import { subscribers } from "../schema.js";
 import { eq } from "drizzle-orm";
 import { getPipeLines } from "./pipeLineQueries.js";
-export async function createSubscriber(name: string, pipeLineID: string, url: string) {
+export async function createSubscriber(name: string, pipeline_id: string, url: string) {
 
 
     const result = await d_base.insert(subscribers).values({
         name: name,
-        pipeline_id: pipeLineID,
+        pipeline_id: pipeline_id,
         url: url
     }).returning();
 

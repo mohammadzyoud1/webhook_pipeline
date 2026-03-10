@@ -9,7 +9,7 @@ import { deletePipelineHandler } from './pipeLine/deletepipeLineHandler.js';
 import { createSubscriberHandler } from './subscriber/createSubscriberHandler.js';
 import { getSubscribersHandler } from './subscriber/getSubscribersHandler.js'
 import { deleteSubscriberHandler } from './subscriber/deleteSubscriberHandler.js'
-import { webhookHandler } from './webhook/webhookHandler.js'
+import { getJobByIDHandler, webhookHandler } from './webhook/webhookHandler.js'
 const conn = postgres(db.db_url);
 export const d_base = drizzle(conn, { schema });
 const app = express();
@@ -25,7 +25,7 @@ app.get("/pipelines", getPipeLinesHandler)
 app.get("/pipelines/:name", getPipeLinesHandler)
 app.get("/subscribers", getSubscribersHandler)
 app.get("/subscribers/:name", getSubscribersHandler)
-
+app.get("/jobs/:id", getJobByIDHandler)
 
 
 

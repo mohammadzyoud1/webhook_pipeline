@@ -34,5 +34,6 @@ export const delivery_attempts = pgTable("delivery_attempts", {
     subscriber_id: uuid("subscriber_id").references(() => subscribers.id, { onDelete: "cascade" }),
     success: boolean("success").default(false),
     response_status: integer("response_status"),
-    attempt_time: timestamp("attempt_time").defaultNow(),
+    attempt_time: integer("attempt_time").default(0),
+    attempt_date: timestamp("attempt_date").defaultNow(),
 });
