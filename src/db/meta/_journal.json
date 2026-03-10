@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1772874432070,
-      "tag": "0000_clumsy_shocker",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1772874730497,
-      "tag": "0001_fearless_the_hood",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1773054508688,
-      "tag": "0002_melted_wild_child",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1773060106313,
-      "tag": "0003_flashy_captain_marvel",
+      "when": 1773140143839,
+      "tag": "0000_modern_wild_pack",
       "breakpoints": true
     }
   ]
