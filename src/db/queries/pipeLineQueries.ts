@@ -28,7 +28,7 @@ export async function getPipeLines(name?: string) {
 }
 export async function deletePipeline(name: string) {
 
-    const result = await d_base.delete(pipelines).where(eq(pipelines.name, name));
+    const result = await d_base.delete(pipelines).where(eq(pipelines.name, name)).returning();;
     return result;
 
 }

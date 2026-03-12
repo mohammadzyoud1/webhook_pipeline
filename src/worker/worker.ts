@@ -1,8 +1,8 @@
 import { d_base } from "../index.js";
 import { pipelines, subscribers } from "../db/schema.js";
 import { eq } from "drizzle-orm";
-import { createDeliveryAttempt } from "src/db/queries/deliveryAttempts.js";
-import { getJobsByStatus, updateJob } from "src/db/queries/jobQueries.js";
+import { createDeliveryAttempt } from "../db/queries/deliveryAttempts.js";
+import { getJobsByStatus, updateJob } from "../db/queries/jobQueries.js";
 
 
 function sentimentAnalysis(payload: any) {

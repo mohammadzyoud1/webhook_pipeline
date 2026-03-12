@@ -30,10 +30,17 @@ export const jobs = pgTable("jobs", {
 
 export const delivery_attempts = pgTable("delivery_attempts", {
     id: uuid("id").primaryKey().defaultRandom(),
-    job_id: uuid("job_id").references(() => jobs.id),
+    job_id: uuid("job_id").references(() => jobs.id, { onDelete: "cascade" }),
     subscriber_id: uuid("subscriber_id").references(() => subscribers.id, { onDelete: "cascade" }),
     success: boolean("success").default(false),
     response_status: integer("response_status"),
-    attempt_time: integer("attempt_time").default(0),
-    attempt_date: timestamp("attempt_date").defaultNow(),
+    attempt_number: integer("attempt_number").default(0),
+    attempt_time: timestamp("attempt_time").defaultNow(),
+});
+
+export const admins = pgTable("admins", {
+    id: uuid("id").primaryKey().defaultRandom(),
+    email: text("email").notNull().unique(),
+    password: text("password").notNull(),
+    created_at: timestamp("created_at").defaultNow(),
 });

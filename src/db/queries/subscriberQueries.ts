@@ -1,7 +1,6 @@
 import { d_base } from "../../index.js";
 import { subscribers } from "../schema.js";
 import { eq } from "drizzle-orm";
-import { getPipeLines } from "./pipeLineQueries.js";
 export async function createSubscriber(name: string, pipeline_id: string, url: string) {
 
 
@@ -29,7 +28,7 @@ export async function getSubscribers(name?: string) {
 
 export async function deleteSubscriber(name: string) {
 
-    const result = await d_base.delete(subscribers).where(eq(subscribers.name, name));
+    const result = await d_base.delete(subscribers).where(eq(subscribers.name, name)).returning();;
     return result;
 
 }

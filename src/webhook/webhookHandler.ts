@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import { getDeliveryAttemptsBYJobId } from "src/db/queries/deliveryAttempts";
-import { createJob, getJobByID } from "src/db/queries/jobQueries";
-import { getPipeLineBySourcePath } from "src/db/queries/pipeLineQueries";
+import { Request, response, Response } from "express";
+import { getDeliveryAttemptsBYJobId } from "../db/queries/deliveryAttempts.js";
+import { createJob, getJobByID } from "../db/queries/jobQueries.js";
+import { getPipeLineBySourcePath } from "../db/queries/pipeLineQueries.js";
 export async function webhookHandler(req: Request, res: Response) {
     const source_path = req.params.source_path as string;
     const payload = req.body;
@@ -22,18 +22,30 @@ export async function webhookHandler(req: Request, res: Response) {
     }
 }
 export async function getJobByIDHandler(req: Request, res: Response) {
-    const job_id = req.params.job_id as string;
+    const job_id = req.params.id as string;
     try {
-        const job = await getJobByID(job_id);
-        if (!job) {
-            return res.status(404).json({ error: "Job not found" });
-        }
+        //    const job = await getJobByID(job_id);
+        //    if (!job) {
+        //        return res.status(404).json({ error: "Job not found" });
+        //    }
+        //    console.log("Attempts:\n");
         const attempts = await getDeliveryAttemptsBYJobId(job_id);
-        return res.status(200).json({ job, delivery_attempts: attempts });
+
+        return res.status(200).json({
+            delivery_attempts: attempts.map((attempt: any) => ({
+                job_id: attempt.job_id,
+                subscriber_id: attempt.subscriber_id,
+                success: attempt.success,
+                response_status: attempt.response_status,
+                attempt_number: attempt.attempt_number,
+                attempt_time: attempt.attempt_time
+            }))
+        });
     }
     catch (error) {
         console.error(error);
         return res.status(500).json({ error: "Failed to get job" });
     }
+
 
 }

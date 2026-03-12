@@ -1,9 +1,56 @@
 {
-  "id": "07180f67-9e4f-4426-b4e9-a53c4bcd1d35",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "78e2d486-e63a-43d2-8914-95d67157b41f",
+  "prevId": "07180f67-9e4f-4426-b4e9-a53c4bcd1d35",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
+    "public.admins": {
+      "name": "admins",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "admins_email_unique": {
+          "name": "admins_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.delivery_attempts": {
       "name": "delivery_attempts",
       "schema": "",

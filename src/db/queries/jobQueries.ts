@@ -1,5 +1,5 @@
 import { d_base } from "../../index.js";
-import { jobs } from "../schema";
+import { jobs } from "../schema.js";
 import { eq } from "drizzle-orm"
 export async function createJob(pipeline_id: string, payload: object) {
     const result = await d_base.insert(jobs).values({
@@ -12,7 +12,7 @@ export async function createJob(pipeline_id: string, payload: object) {
 
 export async function getJobByID(job_id: string) {
     const result = await d_base.select().from(jobs).where(eq(jobs.id, job_id));
-    return result[0];
+    return result;
 }
 
 export async function getJobsByStatus(status: string) {
