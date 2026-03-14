@@ -41,6 +41,6 @@ export const delivery_attempts = pgTable("delivery_attempts", {
 export const admins = pgTable("admins", {
     id: uuid("id").primaryKey().defaultRandom(),
     email: text("email").notNull().unique(),
-    password: text("password").notNull(),
+    hashed_password: text("hashed_password").notNull(),
     created_at: timestamp("created_at").defaultNow(),
 });

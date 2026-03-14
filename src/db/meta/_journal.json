@@ -15,6 +15,13 @@
       "when": 1773312927951,
       "tag": "0001_orange_luckman",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1773512354460,
+      "tag": "0002_nosy_bruce_banner",
+      "breakpoints": true
     }
   ]
 }

@@ -16,7 +16,7 @@ export async function loginHandler(req: Request, res: Response) {
             return res.status(401).json({ error: "Invalid email or password" });
         }
 
-        const passwordValidation = await argon2.verify(admin.password, password);
+        const passwordValidation = await argon2.verify(admin.hashed_password, password);
 
         if (!passwordValidation) {
             return res.status(401).json({ error: "Invalid email or password" });

@@ -2,10 +2,10 @@ import { d_base } from "../../index.js";
 import { admins } from "../schema.js";
 import { eq } from "drizzle-orm";
 
-export async function createAdmin(email: string, password: string) {
+export async function createAdmin(email: string, hashed_password: string) {
     const result = await d_base.insert(admins).values({
         email,
-        password,
+        hashed_password
     }).returning().onConflictDoNothing();
     return result[0];
 }
