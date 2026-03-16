@@ -1,0 +1,1 @@
+ALTER TABLE "pipelines" ADD CONSTRAINT "pipelines_source_path_unique" UNIQUE("source_path");

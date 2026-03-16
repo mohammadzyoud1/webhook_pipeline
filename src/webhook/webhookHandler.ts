@@ -1,6 +1,6 @@
-import { Request, response, Response } from "express";
+import { Request, Response } from "express";
 import { getDeliveryAttemptsBYJobId } from "../db/queries/deliveryAttempts.js";
-import { createJob, getJobByID } from "../db/queries/jobQueries.js";
+import { createJob } from "../db/queries/jobQueries.js";
 import { getPipeLineBySourcePath } from "../db/queries/pipeLineQueries.js";
 export async function webhookHandler(req: Request, res: Response) {
     const source_path = req.params.source_path as string;
@@ -14,21 +14,18 @@ export async function webhookHandler(req: Request, res: Response) {
         }
 
         const job = await createJob(pipeline[0].id, payload);
-        return res.status(202).json({ message: "Webhook received", job_id: job.id });
+        return res.status(202).json({ message: "Webhook received your request and created job", job_id: job.id });
 
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: "Failed to process webhook" });
     }
 }
+
 export async function getJobByIDHandler(req: Request, res: Response) {
     const job_id = req.params.id as string;
     try {
-        //    const job = await getJobByID(job_id);
-        //    if (!job) {
-        //        return res.status(404).json({ error: "Job not found" });
-        //    }
-        //    console.log("Attempts:\n");
+
         const attempts = await getDeliveryAttemptsBYJobId(job_id);
 
         return res.status(200).json({

@@ -4,9 +4,8 @@ import { pgTable, text, timestamp, uuid, jsonb, integer, boolean } from "drizzle
 export const pipelines = pgTable("pipelines", {
     id: uuid("id").primaryKey().defaultRandom(),
     name: text("name").notNull(),
-    source_path: text("source_path").notNull(),
+    source_path: text("source_path").notNull().unique(),
     action_type: text("action_type").notNull(),
-    action_config: jsonb("action_config"),
     created_at: timestamp("created_at").defaultNow(),
 });
 
